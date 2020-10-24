@@ -120,7 +120,7 @@ public class PageElement implements WebElement {
         return (WebElement) new ElementFinder(this, driver) {
             @Override
             public Object operation(PatientWebDriver driver, PageElement element) {
-                return element.getElement().findElements(by);
+                return element.getElement().findElement(by);
             }
         }.perform();
     }

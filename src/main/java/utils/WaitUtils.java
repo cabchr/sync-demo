@@ -1,6 +1,7 @@
 package utils;
 
 import driver.Engine;
+import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -31,8 +32,17 @@ public class WaitUtils {
         return webDriver -> {
             JavascriptExecutor executor = (JavascriptExecutor) webDriver;
             assert executor != null;
+            boolean b = false;
+            try {
+                b = (Boolean) executor.executeScript("return jQuery.active == 0");
+            } catch (JavascriptException e) {
+                if (e.getMessage().contains("jQuery is not defined")) {
+                    System.out.println("jQuery not defined.");
+                    b = true;
+                }
+            }
             return executor.executeScript("return document.readyState").toString().equals("complete") &&
-                    (boolean) executor.executeScript("return jQuery.active == 0");
+                    b;
         };
     }
 }

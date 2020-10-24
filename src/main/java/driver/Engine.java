@@ -1,6 +1,11 @@
 package driver;
 
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Engine {
     private static PatientWebDriver driver;
@@ -8,9 +13,20 @@ public class Engine {
     private static final long timeout = 5000;
 
     private Engine() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\Casper\\Downloads\\chromedriver_win32 (1)\\chromedriver.exe");
-        driver = new PatientWebDriver(new ChromeDriver());
-        driver.manage().window().maximize();
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+        options.setExperimentalOption("useAutomationExtension", false);
+
+        ChromeDriver chromeDriver = new ChromeDriver(options);
+        driver = new PatientWebDriver(chromeDriver);
+        Map<String, Object> map = new HashMap<String, Object>() {{
+            put("source", "Object.defineProperty(navigator, 'webdriver', {get: () => undefined})");
+        }};
+
+        chromeDriver.executeCdpCommand("Page.addScriptToEvaluateOnNewDocument", map);
+        Engine.driver.manage().window().maximize();
     }
 
     public static PatientWebDriver getDriver() {
