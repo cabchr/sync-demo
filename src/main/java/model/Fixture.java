@@ -1,5 +1,6 @@
 package model;
 
+import elements.PageElement;
 import org.openqa.selenium.WebElement;
 
 public class Fixture {
@@ -9,9 +10,9 @@ public class Fixture {
     private final Double team1winOdds;
     private final Double drawOdds;
     private final Double team2winOdds;
-    private final WebElement container;
+    private final PageElement container;
 
-    public Fixture(Time time, String team1Name, String team2Name, Double team1winOdds, Double drawOdds, Double team2winOdds, WebElement container) {
+    public Fixture(Time time, String team1Name, String team2Name, Double team1winOdds, Double drawOdds, Double team2winOdds, PageElement container) {
         this.time = time;
         this.team1Name = team1Name;
         this.team2Name = team2Name;
@@ -21,7 +22,7 @@ public class Fixture {
         this.container = container;
     }
 
-    public WebElement getContainer() {
+    public PageElement getContainer() {
         return container;
     }
 
@@ -58,7 +59,6 @@ public class Fixture {
                 ", team1winOdds=" + team1winOdds +
                 ", drawOdds=" + drawOdds +
                 ", team2winOdds=" + team2winOdds +
-                ", container=" + container +
                 '}';
     }
 }

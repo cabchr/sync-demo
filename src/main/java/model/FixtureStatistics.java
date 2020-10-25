@@ -11,9 +11,9 @@ public class FixtureStatistics {
 
     @Override
     public String toString() {
-        return "FixtureStatistics{" +
-                "team1=" + team1 +
-                ", team2=" + team2 +
+        return "FixtureStatistics{" + "\n" +
+                "  team1=" + team1 + "\n" +
+                "  team2=" + team2 + "\n" +
                 '}';
     }
 }

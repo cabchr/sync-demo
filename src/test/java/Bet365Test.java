@@ -10,6 +10,7 @@ import utils.WaitUtils;
 import utils.bet365.FixtureCalculations;
 
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,11 +33,18 @@ public class Bet365Test {
             final List<Pair<Fixture, FixtureStatistics>> fixtureStatsPairs = new ArrayList<>();
             fixturesList.forEach(f -> fixtureStatsPairs.add(new Pair<>(f, bet365LiveOddsPageClass.getFixtureStats(f))));
 
-            fixtureStatsPairs.forEach(FixtureCalculations::apply);
+            fixtureStatsPairs.forEach(pair -> {
+                Fixture l = pair.getL();
+                if (pair.getR() != null
+                        && !l.getTeam1Name().toLowerCase().contains("esport")
+                        && !l.getTeam2Name().toLowerCase().contains("esport")) {
+                    FixtureCalculations.apply(pair);
+                }
+            });
 
             System.out.println("sleeping....");
             WaitUtils.sleep(20000);
-            System.out.println("resuming....");
+            System.out.println("resuming.... " + LocalDateTime.now().toString());
         }
     }
 }

@@ -194,4 +194,16 @@ public class PageElement implements WebElement {
     private WebElement getElement() {
         return driver.findElementPatiently(by);
     }
+
+    public boolean isPresentPatiently() {
+        try {
+            return !findElements(by).isEmpty();
+        } catch (TimeoutException e) {
+            return false;
+        }
+    }
+
+    public boolean isPresent() {
+        return !Engine.getDriver().findElements(by).isEmpty();
+    }
 }
