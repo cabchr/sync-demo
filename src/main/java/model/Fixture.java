@@ -1,7 +1,6 @@
 package model;
 
 import elements.PageElement;
-import org.openqa.selenium.WebElement;
 
 public class Fixture {
     private final Time time;

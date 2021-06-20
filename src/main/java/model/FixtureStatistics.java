@@ -9,6 +9,14 @@ public class FixtureStatistics {
         this.team2 = team2;
     }
 
+    public TeamStats getTeam1() {
+        return team1;
+    }
+
+    public TeamStats getTeam2() {
+        return team2;
+    }
+
     @Override
     public String toString() {
         return "FixtureStatistics{" + "\n" +

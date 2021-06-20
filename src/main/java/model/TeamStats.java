@@ -17,15 +17,15 @@ public class TeamStats {
         this.maal = maal;
     }
 
-    public int getAngreb() {
+    public Integer getAngreb() {
         return angreb;
     }
 
-    public int getFarligeAngreb() {
+    public Integer getFarligeAngreb() {
         return farligeAngreb;
     }
 
-    public int getBesiddelse() {
+    public Integer getBesiddelse() {
         return besiddelse;
     }
 
@@ -35,6 +35,10 @@ public class TeamStats {
 
     public int getSkudVedSidenAfMaal() {
         return skudVedSidenAfMaal;
+    }
+
+    public int getMaal() {
+        return maal;
     }
 
     @Override

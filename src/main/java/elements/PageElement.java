@@ -191,7 +191,7 @@ public class PageElement implements WebElement {
 
     }
 
-    private WebElement getElement() {
+    public WebElement getElement() {
         return driver.findElementPatiently(by);
     }
 

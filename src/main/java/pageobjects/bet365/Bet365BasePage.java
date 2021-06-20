@@ -6,8 +6,6 @@ import pageobjects.BasePage;
 import synchronization.Synchronizer;
 import utils.ExtendedExpectedConditions;
 
-import java.lang.reflect.InvocationTargetException;
-
 public class Bet365BasePage extends BasePage {
     private static final PageElement btnLiveOdds = new PageElement(By.xpath(".//div[@class='hm-MainHeaderWide ']//div[text()='Liveodds']"));
     private static final PageElement imgLogo = new PageElement(By.xpath(".//div[@class='hm-MainHeaderLogoWide_Bet365LogoImage ']"));
@@ -17,8 +15,12 @@ public class Bet365BasePage extends BasePage {
         return new Synchronizer(ExtendedExpectedConditions.waitForPageElementToBePresent(imgLogo));
     }
 
-    public <T> T activateLiveOdds(Class<T> clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        btnLiveOdds.click();
-        return clazz.getDeclaredConstructor().newInstance();
+    public Bet365LiveOddsPage activateLiveOdds() {
+        try {
+            btnLiveOdds.click();
+        } catch (Exception e) {
+            btnLiveOdds.click();
+        }
+        return new Bet365LiveOddsPage();
     }
 }
